@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.ntnh.craftorio;
 
 public class ClientProxy extends CommonProxy {
 

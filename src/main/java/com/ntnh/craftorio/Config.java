@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.ntnh.craftorio;
 
 import java.io.File;
 
