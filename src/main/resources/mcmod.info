@@ -1,0 +1,16 @@
+[
+{
+  "modid": "craftorio",
+  "name": "Craftorio",
+  "description": "A configurable Factorio-inspired research progression mod for Minecraft 1.7.10.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["drakofalde"],
+  "credits": "Built on Minecraft Forge for Minecraft 1.7.10.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

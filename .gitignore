@@ -1,0 +1,20 @@
+# Gradle
+.gradle/
+build/
+
+# Eclipse
+eclipse/
+*.launch
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Forge MDK source zip (large, not needed in VCS)
+forge-*.zip
+
+# OS
+.DS_Store
+Thumbs.db
