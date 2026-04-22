@@ -1,4 +1,4 @@
-package com.ntnh.craftorio;
+package com.ntnh.craftorio.proxy;
 
 public class ClientProxy extends CommonProxy {
 

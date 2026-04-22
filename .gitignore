@@ -1,20 +1,37 @@
-# Gradle
-.gradle/
-build/
-
-# Eclipse
-eclipse/
-*.launch
-
-# IntelliJ
-.idea/
+.gradle
+.settings
+/.idea/
+/.vscode/
+/run/
+/build/
+/eclipse/
+.classpath
+.project
+/bin/
+/config/
+/crash-reports/
+/logs/
+options.txt
+/saves/
+usernamecache.json
+banned-ips.json
+banned-players.json
+eula.txt
+ops.json
+server.properties
+servers.dat
+usercache.json
+whitelist.json
+/out/
 *.iml
 *.ipr
 *.iws
-
-# Forge MDK source zip (large, not needed in VCS)
-forge-*.zip
-
-# OS
-.DS_Store
-Thumbs.db
+*.bat
+*.DS_Store
+!gradlew.bat
+.factorypath
+addon.local.gradle
+addon.local.gradle.kts
+addon.late.local.gradle
+addon.late.local.gradle.kts
+layout.json

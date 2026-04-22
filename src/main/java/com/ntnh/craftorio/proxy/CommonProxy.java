@@ -1,4 +1,8 @@
-package com.ntnh.craftorio;
+package com.ntnh.craftorio.proxy;
+
+import com.ntnh.craftorio.Config;
+import com.ntnh.craftorio.Craftorio;
+import com.ntnh.craftorio.Tags;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
