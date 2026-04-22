@@ -18,7 +18,9 @@ public class Craftorio {
     public static final String MODID = "craftorio";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    @SidedProxy(clientSide = "com.ntnh.craftorio.proxy.ClientProxy", serverSide = "com.ntnh.craftorio.proxy.CommonProxy")
+    @SidedProxy(
+        clientSide = "com.ntnh.craftorio.proxy.ClientProxy",
+        serverSide = "com.ntnh.craftorio.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
