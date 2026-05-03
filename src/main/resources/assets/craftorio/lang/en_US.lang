@@ -1,0 +1,22 @@
+# Tab
+itemGroup.tabCraftorio=Craftorio
+
+# Items
+item.blueprint.name=Blueprint
+item.automation_science_pack.name=Automation Science Pack
+item.logistic_science_pack.name=Logistic Science Pack
+item.military_science_pack.name=Military Science Pack
+item.chemical_science_pack.name=Chemical Science Pack
+item.production_science_pack.name=Production Science Pack
+item.utility_science_pack.name=Utility Science Pack
+item.space_science_pack.name=Space Science Pack
+item.metallurgic_science_pack.name=Metallurgic Science Pack
+item.electromagnetic_science_pack.name=Electromagnetic Science Pack
+item.agricultural_science_pack.name=Agricultural Science Pack
+item.cryogenic_science_pack.name=Cryogenic Science Pack
+item.promethium_science_pack.name=Promethium Science Pack
+
+# Blocks
+tile.drafting_table.name=Drafting Table
+tile.primitive_laboratory.name=Primitive Laboratory
+tile.laboratory.name=Laboratory

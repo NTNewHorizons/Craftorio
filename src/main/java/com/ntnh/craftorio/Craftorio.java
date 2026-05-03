@@ -17,6 +17,15 @@ public class Craftorio {
 
     public static final String MODID = "craftorio";
     public static final Logger LOG = LogManager.getLogger(MODID);
+    // Creating TAB
+    public static net.minecraft.creativetab.CreativeTabs tabCraftorio = new net.minecraft.creativetab.CreativeTabs(
+        "tabCraftorio") {
+
+        @Override
+        public net.minecraft.item.Item getTabIconItem() {
+            return (CommonProxy.blueprint != null) ? CommonProxy.blueprint : net.minecraft.init.Items.paper;
+        }
+    };
 
     @SidedProxy(
         clientSide = "com.ntnh.craftorio.proxy.ClientProxy",

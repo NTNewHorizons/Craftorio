@@ -1,15 +1,28 @@
 package com.ntnh.craftorio.proxy;
 
+import net.minecraft.item.Item;
+
+import com.ntnh.craftorio.Craftorio;
+
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
 
+    // Items
+    public static Item blueprint;
+
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
-    public void preInit(FMLPreInitializationEvent event) {}
+    public void preInit(FMLPreInitializationEvent event) {
+        blueprint = new Item().setUnlocalizedName("blueprint")
+            .setCreativeTab(Craftorio.tabCraftorio)
+            .setTextureName("craftorio:blueprint");
+        GameRegistry.registerItem(blueprint, "blueprint");
+    }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {}
