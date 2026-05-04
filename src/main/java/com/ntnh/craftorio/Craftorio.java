@@ -17,6 +17,9 @@ public class Craftorio {
 
     public static final String MODID = "craftorio";
     public static final Logger LOG = LogManager.getLogger(MODID);
+    @Mod.Instance(MODID)
+    public static Craftorio instance;
+
     // Creating TAB
     public static net.minecraft.creativetab.CreativeTabs tabCraftorio = new net.minecraft.creativetab.CreativeTabs(
         "tabCraftorio") {
@@ -40,8 +43,9 @@ public class Craftorio {
     }
 
     @Mod.EventHandler
-    // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
+
+        cpw.mods.fml.common.network.NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         proxy.init(event);
     }
 
