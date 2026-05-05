@@ -48,6 +48,9 @@ public class CommonProxy {
         }
 
         GameRegistry.registerBlock(drafting_table, "drafting_table");
+        GameRegistry.registerTileEntity(
+            com.ntnh.craftorio.tileentity.TileEntityDraftingTable.class,
+            "craftorio:drafting_table_te");
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)

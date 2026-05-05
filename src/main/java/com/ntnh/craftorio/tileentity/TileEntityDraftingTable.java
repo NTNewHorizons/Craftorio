@@ -3,6 +3,8 @@ package com.ntnh.craftorio.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityDraftingTable extends TileEntity implements IInventory {
@@ -28,6 +30,7 @@ public class TileEntityDraftingTable extends TileEntity implements IInventory {
         if (stack != null && stack.stackSize > getInventoryStackLimit()) {
             stack.stackSize = getInventoryStackLimit();
         }
+        this.markDirty();
     }
 
     @Override
@@ -51,16 +54,20 @@ public class TileEntityDraftingTable extends TileEntity implements IInventory {
     }
 
     @Override
-    public ItemStack decrStackSize(int slot, int count) {
+    public ItemStack decrStackSize(int slot, int amount) {
         if (this.inventory[slot] != null) {
             ItemStack itemstack;
-            if (this.inventory[slot].stackSize <= count) {
+            if (this.inventory[slot].stackSize <= amount) {
                 itemstack = this.inventory[slot];
                 this.inventory[slot] = null;
+                this.markDirty();
                 return itemstack;
             } else {
-                itemstack = this.inventory[slot].splitStack(count);
-                if (this.inventory[slot].stackSize == 0) this.inventory[slot] = null;
+                itemstack = this.inventory[slot].splitStack(amount);
+                if (this.inventory[slot].stackSize == 0) {
+                    this.inventory[slot] = null;
+                }
+                this.markDirty();
                 return itemstack;
             }
         }
@@ -84,26 +91,34 @@ public class TileEntityDraftingTable extends TileEntity implements IInventory {
     }
 
     @Override
-    public void readFromNBT(net.minecraft.nbt.NBTTagCompound nbt) {
+    public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        net.minecraft.nbt.NBTTagList list = nbt.getTagList("Items", 10);
+
+        this.craftTime = nbt.getShort("CraftTime");
+
+        NBTTagList list = nbt.getTagList("Items", 10);
         this.inventory = new ItemStack[this.getSizeInventory()];
+
         for (int i = 0; i < list.tagCount(); ++i) {
-            net.minecraft.nbt.NBTTagCompound compound = list.getCompoundTagAt(i);
-            int j = compound.getByte("Slot") & 255;
-            if (j >= 0 && j < this.inventory.length) {
-                this.inventory[j] = ItemStack.loadItemStackFromNBT(compound);
+            NBTTagCompound compound = list.getCompoundTagAt(i);
+            byte slot = compound.getByte("Slot");
+
+            if (slot >= 0 && slot < this.inventory.length) {
+                this.inventory[slot] = ItemStack.loadItemStackFromNBT(compound);
             }
         }
     }
 
     @Override
-    public void writeToNBT(net.minecraft.nbt.NBTTagCompound nbt) {
+    public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        net.minecraft.nbt.NBTTagList list = new net.minecraft.nbt.NBTTagList();
+
+        nbt.setShort("CraftTime", (short) this.craftTime);
+
+        NBTTagList list = new NBTTagList();
         for (int i = 0; i < this.inventory.length; ++i) {
             if (this.inventory[i] != null) {
-                net.minecraft.nbt.NBTTagCompound compound = new net.minecraft.nbt.NBTTagCompound();
+                NBTTagCompound compound = new NBTTagCompound();
                 compound.setByte("Slot", (byte) i);
                 this.inventory[i].writeToNBT(compound);
                 list.appendTag(compound);
