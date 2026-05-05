@@ -9,6 +9,8 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityDraftingTable extends TileEntity implements IInventory {
 
+    public static final int BLUEPRINT_CRAFT_TIME = 300;
+
     public int craftTime = 0;
 
     // 0: Blue Dye, 1: Paper, 2: Output (Blueprints)
@@ -130,11 +132,10 @@ public class TileEntityDraftingTable extends TileEntity implements IInventory {
     @Override
     public void updateEntity() {
         if (!this.worldObj.isRemote) {
-
             if (canCraft()) {
                 this.craftTime++;
 
-                if (this.craftTime >= 300) {
+                if (this.craftTime >= BLUEPRINT_CRAFT_TIME) {
                     this.craftTime = 0;
                     this.craftItem();
                 }
