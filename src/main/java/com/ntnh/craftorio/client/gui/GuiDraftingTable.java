@@ -10,7 +10,7 @@ import com.ntnh.craftorio.tileentity.TileEntityDraftingTable;
 
 public class GuiDraftingTable extends GuiContainer {
 
-    // Путь к картинке фона (создадим её позже)
+    // Path to the gui image
     private static final ResourceLocation texture = new ResourceLocation(
         "craftorio",
         "textures/gui/drafting_table.png");
@@ -32,17 +32,19 @@ public class GuiDraftingTable extends GuiContainer {
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
 
-        // Рисуем основной фон
+        // Drawing the main gui
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-        // Рисуем стрелочку прогресса (длится 15 секунд)
-        int i1 = this.tileEntity.craftTime * 24 / 300; // 300 тиков = 15 секунд
-        this.drawTexturedModalRect(k + 89, l + 34, 176, 0, i1 + 1, 16);
+        // Displaying a progress bar (lasts 15 seconds)
+        int i1 = this.tileEntity.craftTime * 24 / 300; // 300 ticks = 15 seconds
+        if (i1 > 0) {
+            this.drawTexturedModalRect(k + 89, l + 34, 176, 0, i1, 16);
+        }
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        // Название окна сверху
-        this.fontRendererObj.drawString("Drafting Table", 8, 6, 4210752);
+        String title = net.minecraft.util.StatCollector.translateToLocal("container.drafting_table");
+        this.fontRendererObj.drawString(title, 8, 6, 4210752);
     }
 }

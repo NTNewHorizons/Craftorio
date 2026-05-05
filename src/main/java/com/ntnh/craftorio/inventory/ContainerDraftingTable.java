@@ -3,10 +3,14 @@ package com.ntnh.craftorio.inventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import com.ntnh.craftorio.tileentity.TileEntityDraftingTable;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerDraftingTable extends Container {
 
@@ -76,5 +80,36 @@ public class ContainerDraftingTable extends Container {
             }
         }
         return itemstack;
+    }
+
+    private int lastCraftTime;
+
+    @Override
+    public void addCraftingToCrafters(ICrafting crafter) {
+        super.addCraftingToCrafters(crafter);
+        crafter.sendProgressBarUpdate(this, 0, this.tileEntity.craftTime);
+    }
+
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+
+        for (int i = 0; i < this.crafters.size(); ++i) {
+            ICrafting crafter = (ICrafting) this.crafters.get(i);
+
+            if (this.lastCraftTime != this.tileEntity.craftTime) {
+                crafter.sendProgressBarUpdate(this, 0, this.tileEntity.craftTime);
+            }
+        }
+
+        this.lastCraftTime = this.tileEntity.craftTime;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void updateProgressBar(int id, int data) {
+        if (id == 0) {
+            this.tileEntity.craftTime = data;
+        }
     }
 }

@@ -20,3 +20,7 @@ item.promethium_science_pack.name=Promethium Science Pack
 tile.drafting_table.name=Drafting Table
 tile.primitive_laboratory.name=Primitive Laboratory
 tile.laboratory.name=Laboratory
+
+# GUI
+
+container.drafting_table=Drafting Table
